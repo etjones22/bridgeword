@@ -1,0 +1,18 @@
+{
+  "version": 3,
+  "rewrites": [
+    {
+      "source": "/ads.txt",
+      "destination": "/ads.txt"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/admin/generate",
+      "schedule": "0 0 * * *",
+      "headers": {
+        "x-api-key": "${ADMIN_KEY}"
+      }
+    }
+  ]
+}

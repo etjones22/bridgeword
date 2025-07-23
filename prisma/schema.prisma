@@ -1,0 +1,26 @@
+// Datasource configuration. Use SQLite locally and Postgres in production. The
+// DATABASE_URL environment variable should be set in the deployed environment.
+datasource db {
+  provider = env("DATABASE_PROVIDER") // e.g. "sqlite" or "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Generator configuration for the Prisma client. This will emit JavaScript
+// and TypeScript definitions into node_modules when `prisma generate` is run.
+generator client {
+  provider = "prisma-client-js"
+}
+
+/// A daily BridgeWord puzzle. Each puzzle has a date (ISO string), four clue
+/// words, one secret bridge word, an array of full phrase combinations, and
+/// an optional explanation. Rather than using array types (which aren't
+/// supported by SQLite), we store JSON strings and parse them at runtime.
+model Puzzle {
+  id         Int      @id @default(autoincrement())
+  date       String   @unique
+  clueWords  String   // JSON encoded string array of clue words
+  secretWord String
+  combos     String   // JSON encoded string array of phrases (e.g. ["fire ant", "firewall"])
+  explanation String? // Optional explanation of how the bridge word works
+  createdAt  DateTime @default(now())
+}
