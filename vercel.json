@@ -1,12 +1,4 @@
 {
-  "version": 3,
-  "rewrites": [
-    {
-      "source": "/ads.txt",
-      "destination": "/ads.txt"
-    }
-  ],
-  "crons": {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     { "source": "/ads.txt", "destination": "/ads.txt" }
@@ -15,16 +7,6 @@
     {
       "path": "/api/admin/generate",
       "schedule": "0 0 * * *"
-    }
-  ]
-}
-
-    {
-      "path": "/api/admin/generate",
-      "schedule": "0 0 * * *",
-      "headers": {
-        "x-api-key": "${ADMIN_KEY}"
-      }
     }
   ]
 }
